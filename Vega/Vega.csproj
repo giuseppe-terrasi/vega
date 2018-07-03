@@ -10,6 +10,9 @@
 
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
+    <Authors>Giuseppe Terrasi</Authors>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>Vega-signkey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
