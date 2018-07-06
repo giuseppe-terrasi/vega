@@ -37,12 +37,23 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\app.error-handler.ts" />
+    <None Remove="ClientApp\src\app\models\contact.ts" />
+    <None Remove="ClientApp\src\app\models\keyValuePair.ts" />
+    <None Remove="ClientApp\src\app\models\saveVehicle.ts" />
+    <None Remove="ClientApp\src\app\models\vehicle.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="ClientApp\src\app\app.error-handler.ts">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\models\contact.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\saveVehicle.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\keyValuePair.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\vehicle.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

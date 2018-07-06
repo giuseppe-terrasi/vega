@@ -1,9 +1,12 @@
-import { ErrorHandler, Inject, NgZone } from "@angular/core";
+import { ErrorHandler, Inject, NgZone, Injector } from "@angular/core";
 import { SnotifyToastConfig, SnotifyPosition, SnotifyService } from "ng-snotify";
+import { Router } from "@angular/router";
 
 export class AppErrorHandler implements ErrorHandler {
 
-  constructor(private ngZone: NgZone,
+  constructor(
+    private injector: Injector,
+    private ngZone: NgZone,
     @Inject(SnotifyService) private snotifyService: SnotifyService) { }
 
   style = 'material';
@@ -39,9 +42,19 @@ export class AppErrorHandler implements ErrorHandler {
     };
   }
 
+  get router(): Router {
+    return this.injector.get(Router);
+  }
+
   handleError(error: any): void {
     this.ngZone.run(() => {
-      this.snotifyService.error("An unexpected error happened.", "Error", this.getConfig());
+      if (error.status === 404) {
+        this.snotifyService.error("Not found.", "Error", this.getConfig());
+        this.router.navigate(['/']);
+      }
+      else {
+        this.snotifyService.error("An unexpected error happened.", "Error", this.getConfig());
+      }
     });
     
   }
