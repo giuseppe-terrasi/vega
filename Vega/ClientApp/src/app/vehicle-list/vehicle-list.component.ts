@@ -36,7 +36,13 @@ export class VehicleListComponent implements OnInit {
 
   private populateVehicles() {
     this.vehicleService.getVehicles(this.query)
-      .subscribe(result => this.queryResult = result);
+      .subscribe(result => {
+
+        this.queryResult = result;
+        console.log(this.queryResult);
+      }
+
+        );
   }
 
   onFilterChange() {
